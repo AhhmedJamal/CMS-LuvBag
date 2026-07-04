@@ -1,26 +1,35 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\LanguageController;
-use App\Http\Controllers\Dashboard\OrderController;
-use App\Http\Controllers\Dashboard\ProductController;
-use App\Http\Controllers\Dashboard\SettingsController;
+use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Settings\SettingsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
 
 Route::middleware('auth')->group(function () {
-
+    
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-    Route::get('/products', [ProductController::class, 'index'])
-        ->name('products');
+        
+  // Products Routes (CRUD كامل)
+    Route::resource('products', ProductController::class);
+
+    Route::post('products/{product}/toggle-status', [ProductController::class, 'toggleStatus'])
+        ->name('products.toggle-status');
+
 
     Route::get('/categories', [CategoryController::class, 'index'])
         ->name('categories');
@@ -31,7 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingsController::class, 'index'])
         ->name('settings');
 
-
     Route::get('/language/{locale}', [LanguageController::class, 'switch'])
-    ->name('language.switch');    
+        ->name('language.switch');
 });
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

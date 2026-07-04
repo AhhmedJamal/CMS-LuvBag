@@ -7,7 +7,7 @@
         <a href="{{ route('dashboard') }}" class="block px-6 py-3 hover:bg-slate-700">
             @lang('dashboard.title')
         </a>
-        <a href="{{ route('products') }}" class="block px-6 py-3 hover:bg-slate-700">
+        <a href="{{ route('products.index') }}" class="block px-6 py-3 hover:bg-slate-700">
             @lang('dashboard.products')
         </a>
         <a href="{{ route('categories') }}" class="block px-6 py-3 hover:bg-slate-700">

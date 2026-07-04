@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
-       public function index()
+    public function index()
     {
-        return view('dashboard.settings');
+        return view('settings.index');
     }
 }

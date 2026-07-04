@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
 
@@ -8,6 +8,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('dashboard.categories');
+        return view('categories.index');
     }
 }
