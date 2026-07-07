@@ -1,23 +1,57 @@
-<aside class="w-64 bg-slate-900 text-white">
-
-    <div class="p-6 text-2xl font-bold">
-        <h2>LUVBAG.</h2>
+<aside class="w-48 text-white px-1.5 flex flex-col justify-between py-4" style="background-color: {{ $settings->get('primary_color') }}">
+    @php
+        $currentRoute = Route::currentRouteName();
+        $links = [
+            'dashboard' => [
+                'name' => __('dashboard.title'),
+                'route' => route('dashboard'),
+                'icon' => 'fa-solid fa-chart-area',
+            ],
+            'products' => [
+                'name' => __('dashboard.products'),
+                'route' => route('products.index'),
+                'icon' => 'fa-solid fa-box',
+            ],
+            'categories' => [
+                'name' => __('dashboard.categories'),
+                'route' => route('categories'),
+                'icon' => 'fa-solid fa-layer-group',
+            ],
+            'orders' => [
+                'name' => __('dashboard.orders'),
+                'route' => route('orders'),
+                'icon' => 'fa-solid fa-cart-shopping',
+            ],
+            'settings' => [
+                'name' => __('dashboard.settings'),
+                'route' => route('settings'),
+                'icon' => 'fa-solid fa-gear',
+            ],
+        ];
+    @endphp
+    <div>
+        <div class="p-2 text-2xl font-bold">
+            <img src="{{  $settings->get('store_logo') }}" alt="{{ $settings->get('store_name') }}" class="w-full h-auto object-contain rounded-[4px]">
+        </div>
+        <nav>
+            @foreach ($links as $link)
+                <a href="{{ $link['route'] }}"
+                    class="block px-6 py-3 hover:translate-x-2 transition-all hover:bg-[#ffffff56] mb-2 rounded-full {{ $currentRoute === strtolower($link['name']) ? 'bg-[#ffffff56]' : '' }}">
+                    <i class="{{ $link['icon'] }}"></i> {{ $link['name'] }}
+                </a>
+            @endforeach
+        </nav>
     </div>
-    <nav>
-        <a href="{{ route('dashboard') }}" class="block px-6 py-3 hover:bg-slate-700">
-            @lang('dashboard.title')
-        </a>
-        <a href="{{ route('products') }}" class="block px-6 py-3 hover:bg-slate-700">
-            @lang('dashboard.products')
-        </a>
-        <a href="{{ route('categories') }}" class="block px-6 py-3 hover:bg-slate-700">
-            @lang('dashboard.categories')
-        </a>
-        <a href="{{ route('orders') }}" class="block px-6 py-3 hover:bg-slate-700">
-            @lang('dashboard.orders')
-        </a>
-        <a href="{{ route('settings') }}" class="block px-6 py-3 hover:bg-slate-700">
-            @lang('dashboard.settings')
-        </a>
-    </nav>
+    <div class="profile flex items-center justify-between px-1.5">
+        <div class="avatar">
+            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt="" class="rounded-full size-12">
+        </div>
+        <div class="info">
+            <h2 class="name text-white font-bold">{{ Auth::user()->name }}</h2>
+            <h3 class="role capitalize text-[12px] text-neutral-400">{{ Auth::user()->role }}</h3>
+        </div>
+    </div>
+    {{-- <a href="{{ route('logout') }}" class="logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+    </a> --}}
 </aside>
