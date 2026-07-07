@@ -37,11 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])
         ->name('orders');
 
-    Route::get('/settings', [SettingsController::class, 'index'])
-        ->name('settings');
-
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+    Route::match(['POST', 'PUT'], '/settings', [SettingsController::class, 'update'])->name('settings.update');
     Route::get('/language/{locale}', [LanguageController::class, 'switch'])
         ->name('language.switch');
+
+
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
