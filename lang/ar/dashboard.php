@@ -15,4 +15,8 @@ return [
     'welcome_orders' => 'مرحبًا بك في الطلبات',
     'welcome_products' => 'مرحبًا بك في المنتجات',
     'welcome_settings' => 'مرحبًا بك في الإعدادات',
+    'customers' => 'العملاء',
+    'welcome_customers' => 'مرحبًا بك في العملاء',
+    'Customization' => 'التخصيص',
+    'welcome_customization' => 'مرحبًا بك في التخصيص',
 ];

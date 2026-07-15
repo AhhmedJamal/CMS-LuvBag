@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomizationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
@@ -19,11 +21,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-        
+
     Route::get('products/', [ProductController::class, 'index'])->name('products.index');
     Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('products', [ProductController::class, 'store'])->name('products.store');
@@ -44,8 +46,20 @@ Route::middleware('auth')->group(function () {
         ->name('categories.update');
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
         ->name('categories.destroy');
-    
 
+
+    Route::get('/customers', [CustomerController::class, 'index'])
+        ->name('customers.index');
+    Route::get('/customers/create', [CustomerController::class, 'create'])
+        ->name('customers.create');
+    Route::post('/customers', [CustomerController::class, 'store'])
+        ->name('customers.store');
+    Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])
+        ->name('customers.edit');
+    Route::put('/customers/{customer}', [CustomerController::class, 'update'])
+        ->name('customers.update');
+    Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])
+        ->name('customers.destroy');
 
     Route::get('/orders', [OrderController::class, 'index'])
         ->name('orders.index');
@@ -56,6 +70,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])
         ->name('orders.edit');
 
+    Route::get('/Customization', [CustomizationController::class, 'index'])->name('Customization.index');
+    Route::post('/Customization', [CustomizationController::class, 'store'])->name('Customization.store');
 
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
