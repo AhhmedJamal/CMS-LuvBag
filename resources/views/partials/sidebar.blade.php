@@ -18,10 +18,20 @@
                 'route' => route('categories.index'),
                 'icon' => 'fa-solid fa-layer-group',
             ],
+            'customers' => [
+                'name' => __('dashboard.customers'),
+                'route' => route('customers.index'),
+                'icon' => 'fa-solid fa-user',
+            ],
             'orders' => [
                 'name' => __('dashboard.orders'),
                 'route' => route('orders.index'),
                 'icon' => 'fa-solid fa-cart-shopping',
+            ],
+            'Customization' => [
+                'name' => __('dashboard.Customization'),
+                'route' => route('Customization.index'),
+                'icon' => 'fa-solid fa-edit',
             ],
             'settings' => [
                 'name' => __('dashboard.settings'),
@@ -31,17 +41,16 @@
         ];
     @endphp
     <div>
-        <div class="p-2 text-2xl font-bold mb-6">
+        <a href="{{ route('dashboard') }}" class="p-2 text-2xl font-bold mb-6 block">
             <img src="{{ $settings->get('store_logo') }}" alt="{{ $settings->get('store_name') }}"
-                class="w-full h-auto object-contain rounded-[4px]">
-        </div>
+                class="w-full h-[60px] object-cover rounded-[6px]">
+        </a>
         <nav>
             @foreach ($links as $key => $link)
                 <a href="{{ $link['route'] }}"
                     class="block px-6 py-3 hover:translate-x-2 transition-all mb-2 rounded-full relative {{ str_starts_with($currentRoute, $key) ? 'bg-[#ffffff] text-primary ' : 'text-white hover:bg-[#ffffff6e] ' }}">
                     <i class="{{ $link['icon'] }}"></i> {{ $link['name'] }}
                 </a>
-
             @endforeach
         </nav>
     </div>
@@ -56,4 +65,3 @@
         </div>
     </div>
 </aside>
-

@@ -15,4 +15,8 @@ return [
     'welcome_orders' => 'Welcome Orders',
     'welcome_products' => 'Welcome Products',
     'welcome_settings' => 'Welcome Settings',
+    'customers' => 'Customers',
+    'welcome_customers' => 'Welcome Customers',
+    'Customization' => 'Customization',
+    'welcome_customization' => 'Welcome Customization',
 ];

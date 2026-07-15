@@ -1,5 +1,5 @@
 <div>
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
     <section class="flex h-full w-full gap-4 p-4">
 
